@@ -1,0 +1,1 @@
+{"meta":{"title":"MATLAB 图像工作台","description":"保存和核验 MATLAB 图像，在 FigureView 浏览结果；精确指标由 MATLAB 计算。"},"figures":{"tab":"MATLAB 图像","empty":"尚无已收集图像。请先运行 MATLAB，再调用 dsh_matlab_collect。","pending":"等待 Agent 调用 read_image","loading":"正在载入图像…","failed":"图像载入失败","source":"MATLAB 数值结果","expand":"放大 / 收起","boundary":"图像用于定性观察；精确数值来自 MATLAB 数据计算。"}}

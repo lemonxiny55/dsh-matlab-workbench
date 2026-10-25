@@ -1,0 +1,9 @@
+{
+  "name": "dsh-matlab-mcp-connection-example",
+  "version": "0.1.0-beta.1",
+  "private": true,
+  "type": "module",
+  "description": "Optional portable DSH connection to the independently installed official MATLAB MCP server",
+  "dsh": {"bundle": {"patch": "./cordis.patch.yml"}},
+  "files": ["cordis.patch.yml", "package.json"]
+}

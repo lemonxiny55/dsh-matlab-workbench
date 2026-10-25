@@ -1,0 +1,18 @@
+# Optional connection example for users without an existing DSH MATLAB MCP server.
+# Install the official Windows executable on PATH using the name below.
+# MATLAB must also be discoverable on PATH. Do not add this if matlab already exists.
+- insert:
+    - id: dsh-matlab-mcp-connection-example
+      name: '@deepseek-ai/dsh-mcp-client'
+      config:
+        serverName: matlab
+        transport: stdio
+        command: 'matlab-mcp-server-windows-x64.exe'
+        args:
+          - '--matlab-session-mode=new'
+          - '--matlab-display-mode=nodesktop'
+          - '--disable-telemetry=true'
+        toolCallTimeoutMs: 600000
+        failOnStartupError: false
+        env:
+          WINDIR: !!js process.env.WINDIR
