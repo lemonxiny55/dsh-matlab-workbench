@@ -2,11 +2,11 @@
 
 [English](README.en.md) · [安装 / Installation](#安装) · [真实 PID Demo](#真实-pid-实验-demo)
 
-面向 **DSH Desktop** 的 MATLAB 工程实验工作台（社区插件，`v0.1.0-beta.1`）。Agent 通过 **MathWorks 官方 MATLAB MCP Server** 执行 MATLAB；本插件在同一 DSH 会话中准备实验、核验 MATLAB 产出的 PNG/CSV/数值指标、显示实验曲线和 PID 参数扫描对比。它不内置 MATLAB、不代替官方 MCP，也不会把图片中的像素当成精确指标。
+面向 **DSH Desktop** 的 MATLAB 工程实验工作台（社区插件，`v0.1.0-beta.2`）。Agent 通过 **MathWorks 官方 MATLAB MCP Server** 执行 MATLAB；本插件在同一 DSH 会话中准备实验、核验 MATLAB 产出的 PNG/CSV/数值指标、显示实验曲线和 PID 参数扫描对比。它不内置 MATLAB、不代替官方 MCP，也不会把图片中的像素当成精确指标。
 
 **与通用 MATLAB MCP 桥接的区别：** 每次实验使用独立且不可覆盖的 ID；对图像做 PNG/CRC/SHA-256 校验，核对 CSV 和 MATLAB 指标来源；通过 `read_image` 让 Agent 真正获取图片附件；Desktop 有参数输入、运行/核验/加载/失败状态、单组曲线和叠加对比。Agent 仍需明确执行和检查每一步。
 
-**Beta 状态：** 真实 DSH Desktop（0.2.1-rc.2）→ 官方 MATLAB MCP（v0.15.0）→ MATLAB R2025b → 3 组 PID / 4 张 PNG / CSV / 指标 → Desktop 展示及 Agent 分析，已于 2026-10-25 在一台开发机完成。**下面面向新用户的独立安装流程尚未在全新环境验收**，不能据此保证所有 DSH/MATLAB 组合可用。历史 M1 正式验收为 **FAIL**；[已知限制](docs/known-limitations.md)。
+**Beta 状态（v0.1.0-beta.2）：** 真实 DSH Desktop（0.2.1-rc.2）→ 官方 MATLAB MCP（v0.15.0）→ MATLAB R2025b → 3 组 PID / 4 张 PNG / CSV / 指标 → Desktop 展示及 Agent 分析，已于 2026-10-25 在一台开发机完成。**下面面向新用户的独立安装流程尚未在全新环境验收**，不能据此保证所有 DSH/MATLAB 组合可用。历史 M1 正式验收为 **FAIL**；[已知限制](docs/known-limitations.md)。
 
 ## 前置条件
 
@@ -17,10 +17,10 @@
 
 ## 安装
 
-1. 下载/克隆此公开仓库，或从 GitHub Release 下载**源码压缩包**并解压。无需 `npm install`、构建或 npm 发布。请将插件目录保存到固定位置，避免以后移动目录造成 `link:` 失效。
+1. 在已安装 DSH CLI 且已初始化目标 profile 的环境运行 `npx @deepseek-ai/dsh plugin --profile desktop add dsh-matlab-workbench@beta`。此命令从 npm 安装 Beta dist-tag 指向的包；如你的 DSH Desktop 使用其他 profile 名称，请把 `desktop` 替换为该名称。源码目录安装仍可用于开发，不是本次发布的安装验收证据。
 2. 在 Windows 安装官方 MATLAB MCP Server v0.15.0 的 `matlab-mcp-server-windows-x64.exe`。将其所在目录与 MATLAB 的 `bin` 目录加入当前 Desktop 可见的 `PATH`。可先从同一 Windows 环境检查 `matlab-mcp-server-windows-x64.exe --version` 和 `matlab -batch "disp(version)"`。PATH 改动可能要重新启动 Desktop 才能生效；**保存当前会话后**再正常重启。
 3. **只有 Desktop 尚未连接 MATLAB MCP 时**，在 Desktop **设置 → 插件**的本地目录安装入口选取 `integration/matlab-mcp-gate`。这是开源的可编辑**连接示例**，使用 PATH 上的官方 MCP，可查看 [连接配置](integration/matlab-mcp-gate/cordis.patch.yml)，默认 `new/nodesktop`；它不含私有文件路径。已有一个 `matlab` server 的用户**跳过此步**，避免重复注册。需要定制参数时，先复制该示例到自己的配置目录后修改（例如绝对程序路径），不要改 DSH 核心。
-4. 在同一个 Desktop 插件管理器，通过**本地目录**添加仓库根目录（含 `package.json`）。部分版本也支持 GitHub 包来源，若使用该方式，请先确认当前 Desktop 的实际支持情况；不把此方式当作已验证安装途径。
+4. 安装后按 DSH Desktop 的 profile/插件管理流程激活该 bundle。Bundle 安装或更新可能需要正常重启 Desktop；先保存会话，且不要重复添加 `matlab` MCP 连接。此 Beta 尚未完成全新 Desktop 环境验收。
 5. 确认当前 Agent 的可用工具中出现 `evaluate_matlab_code`、`run_matlab_file`、`dsh_matlab_prepare_sweep`、`dsh_matlab_collect_sweep`，以及 Workbench 的「PID 参数准备」「MATLAB 图像」「PID 实验对比」页签。在有写入权限的本地工作区开启会话。若有 MCP 启动错误，检查二进制和 MATLAB 的 PATH、Windows 进程环境及是否重复注册；不要盲目重复安装或重试有写入的 MATLAB 调用。
 
 **注意：** 本机测试曾使用独立的私有 Gate 接线与本地 `link:`；这不是新用户的安装依赖。上面的可移植连接示例是按相同 DSH MCP Client 配置格式提供，**尚未在一台全新 Desktop 做独立安装验收**。本项目不自动修改 Desktop profile、MATLAB `startup.m` 或其他插件。
@@ -54,3 +54,4 @@ Agent 调 `dsh_matlab_prepare_sweep` 得到 `setupCode`、`executeCode`、`sweep
 问题反馈请使用本项目 GitHub 仓库的 **Issues**，注明 DSH Desktop / MATLAB / MCP 版本、所见步骤及脱敏错误，不上传会话、令牌或私有日志。仓库建议 Topics：`dsh-plugin`、`deepseek-harness`、`matlab`、`pid`、`simulation`。社区项目，**非 DeepSeek/DSH 或 MathWorks 官方产品，不获其背书**。MATLAB® 属于 MathWorks；使用者须自行遵守 MATLAB 授权条款。本项目源码采用 [MIT](LICENSE)。
 
 **已知限制：** M1 历史生命周期/停用页签残留未明确根因，部分目录链接卸载后可能遗留 junction；取消或超时并不证明 MATLAB 已停止，不能自动重跑同一有写入任务。见 [限制与验收事实](docs/known-limitations.md)。测试中仅验证一套本机组合；`nodesktop` 不保证所有 MATLAB 图形操作都无窗口。
+
