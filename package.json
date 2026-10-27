@@ -1,11 +1,68 @@
 {
-  "name": "dsh-matlab-workbench", "version": "0.1.0-beta.1", "private": true, "type": "module",
+  "name": "dsh-matlab-workbench",
+  "version": "0.1.0-beta.2",
+  "type": "module",
   "description": "DSH Desktop MATLAB experiment workbench: MCP figures, PID sweeps, verified metrics and comparisons",
   "license": "MIT",
-  "keywords": ["dsh-plugin", "deepseek-harness", "matlab", "matlab-mcp-server", "pid", "simulation", "engineering"],
-  "engines": {"node": ">=24", "dsh": "0.2.1-rc.2 || 0.2.1-rc.3"},
-  "exports": {".": "./dsh/host/index.mjs", "./client": "./dsh/client/index.js", "./package.json": "./package.json", "./locale/*.json": "./locale/*.json", "./icon": "./icon.svg"},
-  "files": ["core", "dsh", "matlab", "examples", "integration", "locale", "icon.svg", "cordis.patch.yml", "LICENSE", "README.md", "README.en.md"],
-  "scripts": {"test": "node --test tests/*.test.mjs", "test:matlab:m2": "node probes/m2/run-matlab-validation.mjs", "check": "node --check core/figures.mjs && node --check core/sweeps.mjs && node --check dsh/host/index.mjs && node --check dsh/host/projection.mjs && node --check dsh/client/index.js"},
-  "dsh": {"bundle": {"patch": "./cordis.patch.yml"}, "client": {"platform": "web", "immediately": false, "inject": []}}
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "matlab",
+    "matlab-mcp-server",
+    "pid",
+    "simulation",
+    "engineering"
+  ],
+  "engines": {
+    "node": ">=24",
+    "dsh": "0.2.1-rc.2 || 0.2.1-rc.3"
+  },
+  "exports": {
+    ".": "./dsh/host/index.mjs",
+    "./client": "./dsh/client/index.js",
+    "./package.json": "./package.json",
+    "./icon": "./icon.svg",
+    "./locale/*.json": "./locale/*.json"
+  },
+  "files": [
+    "core",
+    "dsh",
+    "matlab/dsh_m1_save_figure.m",
+    "matlab/dsh_m2_pid_sweep.m",
+    "examples",
+    "integration",
+    "locale",
+    "icon.svg",
+    "cordis.patch.yml",
+    "LICENSE",
+    "README.md",
+    "README.en.md"
+  ],
+  "scripts": {
+    "test": "node --test tests/*.test.mjs",
+    "test:matlab:m2": "node probes/m2/run-matlab-validation.mjs",
+    "check": "node --check core/figures.mjs && node --check core/sweeps.mjs && node --check dsh/host/index.mjs && node --check dsh/host/projection.mjs && node --check dsh/client/index.js"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "immediately": false,
+      "inject": []
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lemonxiny55/dsh-matlab-workbench.git"
+  },
+  "homepage": "https://github.com/lemonxiny55/dsh-matlab-workbench#readme",
+  "bugs": {
+    "url": "https://github.com/lemonxiny55/dsh-matlab-workbench/issues"
+  },
+  "publishConfig": {
+    "access": "public",
+    "tag": "beta"
+  }
 }
