@@ -2,11 +2,11 @@
 
 [简体中文](README.md) · [Installation](#installation) · [Real PID demo](#real-pid-sweep-demo)
 
-An independent **DSH Desktop** community plugin (`v0.1.0-beta.1`) for MATLAB experiments. The Agent executes code through the **official MathWorks MATLAB MCP Server**; Workbench prepares session-owned experiments, verifies MATLAB-generated PNG/CSV/numeric metrics, attaches images to the conversation, and displays PID sweep comparisons. It does not bundle MATLAB, replace the official MCP server, or estimate precise metrics from image pixels.
+An independent **DSH Desktop** community plugin (`v0.1.0-beta.2`) for MATLAB experiments. The Agent executes code through the **official MathWorks MATLAB MCP Server**; Workbench prepares session-owned experiments, verifies MATLAB-generated PNG/CSV/numeric metrics, attaches images to the conversation, and displays PID sweep comparisons. It does not bundle MATLAB, replace the official MCP server, or estimate precise metrics from image pixels.
 
 **Beyond a generic MCP bridge:** unique immutable experiment IDs; PNG CRC and SHA-256 integrity checks; MATLAB-sourced metrics; explicit Agent `read_image` attachments; PID gain validation; progress, error and uncertain-outcome states; individual plots and overlays.
 
-**Beta evidence:** On October 25, 2026, one real DSH Desktop 0.2.1-rc.2 session used official MATLAB MCP v0.15.0 with MATLAB R2025b, generated 3 runs / 4 PNGs, verified CSV and metrics, displayed the comparison tabs and supported Agent analysis. **A fresh-user installation of the portable connection example below has not yet been verified.** Historical M1 acceptance remains **FAIL** due to unresolved lifecycle issues; see [known limitations](docs/known-limitations.md).
+**Beta v0.1.0-beta.2 evidence:** On October 25, 2026, one real DSH Desktop 0.2.1-rc.2 session used official MATLAB MCP v0.15.0 with MATLAB R2025b, generated 3 runs / 4 PNGs, verified CSV and metrics, displayed the comparison tabs and supported Agent analysis. **A fresh-user installation of the portable connection example below has not yet been verified.** Historical M1 acceptance remains **FAIL** due to unresolved lifecycle issues; see [known limitations](docs/known-limitations.md).
 
 ## Requirements
 
@@ -17,10 +17,10 @@ An independent **DSH Desktop** community plugin (`v0.1.0-beta.1`) for MATLAB exp
 
 ## Installation
 
-1. Clone/download this repository, or extract the GitHub Release **source archive** to a stable folder. No `npm install` or bundle build is needed. Avoid moving the folder while a directory `link:` is installed.
+1. In an environment with the DSH CLI installed and the target profile initialized, run `npx @deepseek-ai/dsh plugin --profile desktop add dsh-matlab-workbench@beta`. This installs the package selected by the npm `beta` dist-tag. Replace `desktop` if your DSH Desktop uses a different profile name. A local source directory remains useful for development, but is not evidence of the published-package install.
 2. Install the official Windows binary named `matlab-mcp-server-windows-x64.exe` from its v0.15.0 release; put its directory and MATLAB's `bin` directory on the PATH seen by Desktop. Test from the same Windows environment with `matlab-mcp-server-windows-x64.exe --version` and `matlab -batch "disp(version)"`. Restart Desktop normally **only after saving your active session** if PATH changes need to be picked up.
 3. **If there is no existing MATLAB MCP connection:** in Desktop **Settings → Plugins**, use the local-directory installer for `integration/matlab-mcp-gate`. This editable, public [connection example](integration/matlab-mcp-gate/cordis.patch.yml) registers **one** `matlab` stdio server using the official executable on PATH, in `new/nodesktop` mode. It contains no private or machine-specific paths. **Skip this step if a `matlab` server is already registered.** To customize binary paths/flags, copy the example into your own configuration directory and edit that copy; do not patch DSH core.
-4. Use Desktop's plugin manager to add this repository **root as a local directory** (the folder containing `package.json`). GitHub package installation is an option on some DSH versions, but is **not claimed as independently verified** here.
+4. Activate the installed bundle through the DSH Desktop profile/plugin workflow. Bundle installation or updates may require a normal Desktop restart; save active sessions first and do not register a second `matlab` MCP connection. This Beta has not yet passed a fresh Desktop installation test.
 5. Confirm the Agent sees `evaluate_matlab_code`, `run_matlab_file`, `dsh_matlab_prepare_sweep` and `dsh_matlab_collect_sweep`; check for **PID Input**, **MATLAB Figures**, and **PID Experiments** tabs. Use a session workspace with local write access. On startup failure, inspect the server executable/PATH and existing `matlab` registrations before changing configuration. Avoid automatically retrying MATLAB writes.
 
 The one-machine M3 test used a private Gate wiring configuration, but **users do not depend on that setup**. The public connection example uses the same DSH MCP client settings format; **it has not yet passed a clean-machine installation test**. This plugin does not edit the Desktop profile, MATLAB `startup.m`, or unrelated plugins automatically.
@@ -54,3 +54,4 @@ Run `npm run check` for syntax and `npm test` for Node regression tests using sy
 Please file issues through the project's GitHub **Issues** page with sanitized reproduction steps and DSH/MATLAB/MCP version numbers, never tokens or private session logs. Suggested GitHub topics: `dsh-plugin`, `deepseek-harness`, `matlab`, `pid`, `simulation`. This is an **unofficial community project** unaffiliated with and not endorsed by DSH/DeepSeek or MathWorks. MATLAB® is a MathWorks trademark; users need their own MATLAB authorization and must follow its license. Project code: [MIT](LICENSE).
 
 **Known limitations:** the historical M1 disable/tab lifecycle failure remains unresolved; `link:` uninstallation can leave a junction; cancelling or timing out a MATLAB MCP request does not prove execution stopped. See [known limitations and evidence scope](docs/known-limitations.md). Only one Windows/DSH/MATLAB combination has been verified. `nodesktop` does not guarantee that all MATLAB graphics commands avoid windows.
+
