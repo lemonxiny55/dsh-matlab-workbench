@@ -1,6 +1,6 @@
 {
   "name": "dsh-matlab-workbench",
-  "version": "0.1.0-beta.2",
+  "version": "0.1.0-beta.3",
   "type": "module",
   "description": "DSH Desktop MATLAB experiment workbench: MCP figures, PID sweeps, verified metrics and comparisons",
   "license": "MIT",
@@ -36,7 +36,8 @@
     "cordis.patch.yml",
     "LICENSE",
     "README.md",
-    "README.en.md"
+    "README.en.md",
+    "docs/known-limitations.md"
   ],
   "scripts": {
     "test": "node --test tests/*.test.mjs",

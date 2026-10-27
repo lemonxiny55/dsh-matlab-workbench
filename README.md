@@ -2,11 +2,11 @@
 
 [English](README.en.md) · [安装 / Installation](#安装) · [真实 PID Demo](#真实-pid-实验-demo)
 
-面向 **DSH Desktop** 的 MATLAB 工程实验工作台（社区插件，`v0.1.0-beta.2`）。Agent 通过 **MathWorks 官方 MATLAB MCP Server** 执行 MATLAB；本插件在同一 DSH 会话中准备实验、核验 MATLAB 产出的 PNG/CSV/数值指标、显示实验曲线和 PID 参数扫描对比。它不内置 MATLAB、不代替官方 MCP，也不会把图片中的像素当成精确指标。
+面向 **DSH Desktop** 的 MATLAB 工程实验工作台（社区插件，`v0.1.0-beta.3`）。Agent 通过 **MathWorks 官方 MATLAB MCP Server** 执行 MATLAB；本插件在同一 DSH 会话中准备实验、核验 MATLAB 产出的 PNG/CSV/数值指标、显示实验曲线和 PID 参数扫描对比。它不内置 MATLAB、不代替官方 MCP，也不会把图片中的像素当成精确指标。
 
 **与通用 MATLAB MCP 桥接的区别：** 每次实验使用独立且不可覆盖的 ID；对图像做 PNG/CRC/SHA-256 校验，核对 CSV 和 MATLAB 指标来源；通过 `read_image` 让 Agent 真正获取图片附件；Desktop 有参数输入、运行/核验/加载/失败状态、单组曲线和叠加对比。Agent 仍需明确执行和检查每一步。
 
-**Beta 状态（v0.1.0-beta.2）：** 真实 DSH Desktop（0.2.1-rc.2）→ 官方 MATLAB MCP（v0.15.0）→ MATLAB R2025b → 3 组 PID / 4 张 PNG / CSV / 指标 → Desktop 展示及 Agent 分析，已于 2026-10-25 在一台开发机完成。**下面面向新用户的独立安装流程尚未在全新环境验收**，不能据此保证所有 DSH/MATLAB 组合可用。历史 M1 正式验收为 **FAIL**；[已知限制](docs/known-limitations.md)。
+**Beta 状态（v0.1.0-beta.3）：** 真实 DSH Desktop（0.2.1-rc.2）→ 官方 MATLAB MCP（v0.15.0）→ MATLAB R2025b → 3 组 PID / 4 张 PNG / CSV / 指标 → Desktop 展示及 Agent 分析，已于 2026-10-25 在一台开发机完成。**下面面向新用户的独立安装流程尚未在全新环境验收**，不能据此保证所有 DSH/MATLAB 组合可用。历史 M1 正式验收为 **FAIL**；[已知限制](docs/known-limitations.md)。
 
 ## 前置条件
 

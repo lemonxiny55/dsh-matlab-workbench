@@ -2,11 +2,11 @@
 
 [简体中文](README.md) · [Installation](#installation) · [Real PID demo](#real-pid-sweep-demo)
 
-An independent **DSH Desktop** community plugin (`v0.1.0-beta.2`) for MATLAB experiments. The Agent executes code through the **official MathWorks MATLAB MCP Server**; Workbench prepares session-owned experiments, verifies MATLAB-generated PNG/CSV/numeric metrics, attaches images to the conversation, and displays PID sweep comparisons. It does not bundle MATLAB, replace the official MCP server, or estimate precise metrics from image pixels.
+An independent **DSH Desktop** community plugin (`v0.1.0-beta.3`) for MATLAB experiments. The Agent executes code through the **official MathWorks MATLAB MCP Server**; Workbench prepares session-owned experiments, verifies MATLAB-generated PNG/CSV/numeric metrics, attaches images to the conversation, and displays PID sweep comparisons. It does not bundle MATLAB, replace the official MCP server, or estimate precise metrics from image pixels.
 
 **Beyond a generic MCP bridge:** unique immutable experiment IDs; PNG CRC and SHA-256 integrity checks; MATLAB-sourced metrics; explicit Agent `read_image` attachments; PID gain validation; progress, error and uncertain-outcome states; individual plots and overlays.
 
-**Beta v0.1.0-beta.2 evidence:** On October 25, 2026, one real DSH Desktop 0.2.1-rc.2 session used official MATLAB MCP v0.15.0 with MATLAB R2025b, generated 3 runs / 4 PNGs, verified CSV and metrics, displayed the comparison tabs and supported Agent analysis. **A fresh-user installation of the portable connection example below has not yet been verified.** Historical M1 acceptance remains **FAIL** due to unresolved lifecycle issues; see [known limitations](docs/known-limitations.md).
+**Beta v0.1.0-beta.3 evidence:** On October 25, 2026, one real DSH Desktop 0.2.1-rc.2 session used official MATLAB MCP v0.15.0 with MATLAB R2025b, generated 3 runs / 4 PNGs, verified CSV and metrics, displayed the comparison tabs and supported Agent analysis. **A fresh-user installation of the portable connection example below has not yet been verified.** Historical M1 acceptance remains **FAIL** due to unresolved lifecycle issues; see [known limitations](docs/known-limitations.md).
 
 ## Requirements
 
